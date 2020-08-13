@@ -22,18 +22,16 @@ def get_status(user_id):
 
 def sms_sender(sms_text):
     load_dotenv()
-    account_SID = os.getenv('account_SID')
-    token = os.getenv('Token_twilio')
-    NUMBER_FROM = os.getenv('NUMBER_FROM')
-    NUMBER_TO = os.getenv('NUMBER_TO')
-    account_sid = account_SID
-    auth_token = token
+    number_from = os.getenv('NUMBER_FROM')
+    number_to = os.getenv('NUMBER_TO')
+    account_sid = os.getenv('account_SID')
+    auth_token = os.getenv('Token_twilio')
     client = Client(account_sid, auth_token)
     message = client.messages \
         .create(
         body=sms_text,
-        from_=NUMBER_FROM,
-        to=NUMBER_TO
+        from_=number_from,
+        to=number_to
     )
     return message.sid
 
