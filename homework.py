@@ -4,10 +4,14 @@ import requests
 from twilio.rest import Client
 from dotenv import load_dotenv
 
+load_dotenv()
+vk_token = os.getenv('vk_token')
+number_from = os.getenv('NUMBER_FROM')
+number_to = os.getenv('NUMBER_TO')
+account_sid = os.getenv('account_SID')
+auth_token = os.getenv('Token_twilio')
 
 def get_status(user_id):
-    load_dotenv()
-    vk_token = os.getenv('vk_token')
     params = {
         'v': '5.122',
         'access_token': vk_token,
@@ -21,11 +25,6 @@ def get_status(user_id):
 
 
 def sms_sender(sms_text):
-    load_dotenv()
-    number_from = os.getenv('NUMBER_FROM')
-    number_to = os.getenv('NUMBER_TO')
-    account_sid = os.getenv('account_SID')
-    auth_token = os.getenv('Token_twilio')
     client = Client(account_sid, auth_token)
     message = client.messages \
         .create(
